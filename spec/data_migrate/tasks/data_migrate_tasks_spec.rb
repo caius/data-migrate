@@ -134,12 +134,7 @@ describe DataMigrate::Tasks::DataMigrateTasks do
       end
 
       allow(Rails).to receive(:root) { '.' }
-
-      if Rails::VERSION::MAJOR == 5
-        allow(DataMigrate::Tasks::DataMigrateTasks).to receive(:schema_migrations_path) { 'spec/db/migrate/5.2' }
-      else
-        allow(DataMigrate::Tasks::DataMigrateTasks).to receive(:schema_migrations_path) { 'spec/db/migrate/6.0' }
-      end
+      allow(DataMigrate::Tasks::DataMigrateTasks).to receive(:schema_migrations_path) { 'spec/db/migrate/6.0' }
 
       DataMigrate::Tasks::DataMigrateTasks.migrate
     end

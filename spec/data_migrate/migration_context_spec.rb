@@ -1,19 +1,9 @@
 require "spec_helper"
 
 describe DataMigrate::DataMigrator do
-  let(:context) {
-    if (Rails::VERSION::MAJOR == 5)
-      DataMigrate::MigrationContext.new("spec/db/data")
-    else
-      DataMigrate::MigrationContext.new("spec/db/data-6.0")
-    end
-  }
+  let(:context) { DataMigrate::MigrationContext.new("spec/db/data-6.0") }
   let(:schema_context) {
-    if (Rails::VERSION::MAJOR == 5)
-      ActiveRecord::MigrationContext.new("spec/db/migrate/5.2")
-    else
-      ActiveRecord::MigrationContext.new("spec/db/migrate/6.0", ActiveRecord::Base.connection.schema_migration)
-    end
+    ActiveRecord::MigrationContext.new("spec/db/migrate/6.0", ActiveRecord::Base.connection.schema_migration)
   }
 
   after do
